@@ -1,5 +1,8 @@
 # acyort-pagination
 
+[![Build Status](https://travis-ci.org/acyortjs/acyort-pagination.svg?branch=master)](https://travis-ci.org/acyortjs/acyort-pagination)
+[![codecov](https://codecov.io/gh/acyortjs/acyort-pagination/branch/master/graph/badge.svg)](https://codecov.io/gh/acyortjs/acyort-pagination)
+
 Pagination utilities for [AcyOrt](https://github.com/acyortjs/acyort)
 
 ## Install
