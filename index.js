@@ -4,12 +4,15 @@ function getPath(base, current) {
   if (current === 1) {
     return path.join(base, 'index.html')
   }
-  return path.join(base, current.toString(), 'index.html')
+  return path.join(base, 'page', current.toString(), 'index.html')
 }
 
 function getPrev(base, current) {
   if (current === 1) {
     return ''
+  }
+  if (current === 2) {
+    return path.join(base, '/')
   }
   return path.join(base, 'page', (current - 1).toString(), '/')
 }
