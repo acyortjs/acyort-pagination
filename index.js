@@ -29,7 +29,7 @@ function pagination(args) {
     title,
   } = args
 
-  if (perpage === 0 || posts.length <= perpage) {
+  if (!perpage || posts.length <= perpage) {
     return [{
       base,
       title,
