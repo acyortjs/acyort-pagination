@@ -21,7 +21,7 @@ function getNext(base, current) {
   return path.join(base, 'page', (current + 1).toString(), '/')
 }
 
-function pagination(args) {
+function pagination(args, extra = {}) {
   const {
     base,
     perpage,
@@ -30,7 +30,7 @@ function pagination(args) {
   } = args
 
   if (!perpage || posts.length <= perpage) {
-    return [{
+    return [Object.assign({
       base,
       title,
       prev: '',
@@ -39,7 +39,7 @@ function pagination(args) {
       path: getPath(base, 1),
       current: 1,
       total: 1,
-    }]
+    }, extra)]
   }
 
   const data = []
@@ -48,7 +48,7 @@ function pagination(args) {
   let page = 1
 
   for (let i = 0; i < posts.length; i += perpage) {
-    data.push({
+    data.push(Object.assign({
       base,
       title,
       prev: getPrev(base, page),
@@ -57,7 +57,7 @@ function pagination(args) {
       path: getPath(base, page),
       current: page,
       total,
-    })
+    }, extra))
 
     if (page === total) {
       data[page - 1].next = ''

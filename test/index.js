@@ -13,7 +13,9 @@ describe('pagination', () => {
       posts: [1, 2, 3, 4, 5],
       title: 'zzz'
     }
-    const result = jsonify([ { base: '/xxx/yyy',
+    const extra = { type: 'index' }
+    const result = jsonify([ {
+    base: '/xxx/yyy',
     title: 'zzz',
     prev: '',
     next: '',
@@ -22,7 +24,18 @@ describe('pagination', () => {
     current: 1,
     total: 1 } ])
 
+    const result1 = jsonify([ {
+    base: '/xxx/yyy',
+    title: 'zzz',
+    prev: '',
+    next: '',
+    posts: [ 1, 2, 3, 4, 5 ],
+    path: '/xxx/yyy/index.html',
+    current: 1,
+    total: 1, type: 'index' } ])
+
     assert(jsonify(pagination(data)) === result)
+    assert(jsonify(pagination(data, extra)) === result1)
   })
 
   it('width pages', () => {

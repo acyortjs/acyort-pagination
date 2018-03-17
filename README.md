@@ -23,7 +23,9 @@ let data = {
   title: 'zzz'
 }
 
-pagination(data)
+const extra = { type: 'index' }
+
+pagination(data, extra)
 /*
 [ { base: '/xxx/yyy',
     title: 'zzz',
@@ -32,7 +34,7 @@ pagination(data)
     posts: [ 1, 2, 3, 4, 5 ],
     path: '/xxx/yyy/index.html',
     current: 1,
-    total: 1 } ]
+    total: 1, type: 'index' } ]
 */
 
 data = {
