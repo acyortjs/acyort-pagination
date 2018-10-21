@@ -1,4 +1,4 @@
-# acyort-pagination
+# Paginator
 
 [![Build Status](https://travis-ci.org/acyortjs/paginator.svg?branch=master)](https://travis-ci.org/acyortjs/paginator)
 [![codecov](https://codecov.io/gh/acyortjs/paginator/branch/master/graph/badge.svg)](https://codecov.io/gh/acyortjs/paginator)
@@ -14,7 +14,7 @@ $ npm i @acyort/paginator -S
 ## Usage
 
 ```js
-const pagination = require('@acyort/paginator')
+const paginator = require('@acyort/paginator')
 
 let data = {
   base: '/xxx/yyy',             // base url
@@ -25,7 +25,7 @@ let data = {
 
 const extra = { title: 'zzz' }  // extra data
 
-pagination(data, extra)
+paginator(data, extra)
 /*
 [ { base: '/xxx/yyy',
     title: 'zzz',
@@ -43,7 +43,7 @@ data = {
   posts: [1, 2, 3, 4, 5],
 }
 
-pagination(data)
+paginator(data)
 /*
 [ { base: '/',
     prev: '',
