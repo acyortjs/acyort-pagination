@@ -1,24 +1,24 @@
-const path = require('path')
+const { join } = require('path')
 
-function getPath(base, current) {
+function getPath(base, current, prefix) {
   if (current === 1) {
-    return path.join(base, 'index.html')
+    return base
   }
-  return path.join(base, 'page', current.toString(), 'index.html')
+  return join(base, prefix, current.toString())
 }
 
-function getPrev(base, current) {
+function getPrev(base, current, prefix) {
   if (current === 1) {
     return ''
   }
   if (current === 2) {
-    return path.join(base, '/')
+    return join(base, '/')
   }
-  return path.join(base, 'page', (current - 1).toString(), '/')
+  return join(base, prefix, (current - 1).toString(), '/')
 }
 
-function getNext(base, current) {
-  return path.join(base, 'page', (current + 1).toString(), '/')
+function getNext(base, current, prefix) {
+  return join(base, prefix, (current + 1).toString(), '/')
 }
 
 function pagination(args, extra = {}) {
@@ -26,20 +26,20 @@ function pagination(args, extra = {}) {
     base,
     perpage,
     posts,
-    title,
+    prefix = 'page',
   } = args
 
   if (!perpage || posts.length <= perpage) {
-    return [Object.assign({
+    return [{
+      ...extra,
       base,
-      title,
       prev: '',
       next: '',
       posts,
-      path: getPath(base, 1),
+      currentPath: getPath(base, 1, prefix),
       current: 1,
       total: 1,
-    }, extra)]
+    }]
   }
 
   const data = []
@@ -48,16 +48,16 @@ function pagination(args, extra = {}) {
   let page = 1
 
   for (let i = 0; i < posts.length; i += perpage) {
-    data.push(Object.assign({
+    data.push({
+      ...extra,
       base,
-      title,
-      prev: getPrev(base, page),
-      next: getNext(base, page),
+      prev: getPrev(base, page, prefix),
+      next: getNext(base, page, prefix),
       posts: posts.slice(i, i + perpage),
-      path: getPath(base, page),
+      currentPath: getPath(base, page, prefix),
       current: page,
       total,
-    }, extra))
+    })
 
     if (page === total) {
       data[page - 1].next = ''

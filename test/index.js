@@ -11,31 +11,19 @@ describe('pagination', () => {
       base: '/xxx/yyy',
       perpage: 0,
       posts: [1, 2, 3, 4, 5],
-      title: 'zzz'
     }
-    const extra = { type: 'index' }
+    const extra = { title: 'zzz', base: 1 }
     const result = jsonify([ {
-    base: '/xxx/yyy',
     title: 'zzz',
+    base: '/xxx/yyy',
     prev: '',
     next: '',
     posts: [ 1, 2, 3, 4, 5 ],
-    path: '/xxx/yyy/index.html',
+    currentPath: '/xxx/yyy',
     current: 1,
     total: 1 } ])
 
-    const result1 = jsonify([ {
-    base: '/xxx/yyy',
-    title: 'zzz',
-    prev: '',
-    next: '',
-    posts: [ 1, 2, 3, 4, 5 ],
-    path: '/xxx/yyy/index.html',
-    current: 1,
-    total: 1, type: 'index' } ])
-
-    assert(jsonify(pagination(data)) === result)
-    assert(jsonify(pagination(data, extra)) === result1)
+    assert(jsonify(pagination(data, extra)) === result)
   })
 
   it('width pages', () => {
@@ -43,32 +31,53 @@ describe('pagination', () => {
       base: '/',
       perpage: 2,
       posts: [1, 2, 3, 4, 5],
-      title: 'index'
     }
     const result = jsonify([ { base: '/',
-    title: 'index',
     prev: '',
     next: '/page/2/',
     posts: [ 1, 2 ],
-    path: '/index.html',
+    currentPath: '/',
     current: 1,
     total: 3 },
   { base: '/',
-    title: 'index',
     prev: '/',
     next: '/page/3/',
     posts: [ 3, 4 ],
-    path: '/page/2/index.html',
+    currentPath: '/page/2',
     current: 2,
     total: 3 },
   { base: '/',
-    title: 'index',
     prev: '/page/2/',
     next: '',
     posts: [ 5 ],
-    path: '/page/3/index.html',
+    currentPath: '/page/3',
     current: 3,
     total: 3 } ])
+
+    assert(jsonify(pagination(data)) === result)
+  })
+
+  it('prefix', () => {
+    const data = {
+      base: '/',
+      perpage: 2,
+      posts: [1, 2, 3],
+      prefix: 'nav',
+    }
+    const result = jsonify([ { base: '/',
+    prev: '',
+    next: '/nav/2/',
+    posts: [ 1, 2 ],
+    currentPath: '/',
+    current: 1,
+    total: 2 },
+  { base: '/',
+    prev: '/',
+    next: '',
+    posts: [ 3 ],
+    currentPath: '/nav/2',
+    current: 2,
+    total: 2 } ])
 
     assert(jsonify(pagination(data)) === result)
   })
