@@ -4,7 +4,7 @@ function getPath(base, current, prefix) {
   if (current === 1) {
     return base
   }
-  return join(base, prefix, current.toString())
+  return join(base, prefix, current.toString(), '/')
 }
 
 function getPrev(base, current, prefix) {

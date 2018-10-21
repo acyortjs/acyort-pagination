@@ -43,14 +43,14 @@ describe('pagination', () => {
     prev: '/',
     next: '/page/3/',
     posts: [ 3, 4 ],
-    currentPath: '/page/2',
+    currentPath: '/page/2/',
     current: 2,
     total: 3 },
   { base: '/',
     prev: '/page/2/',
     next: '',
     posts: [ 5 ],
-    currentPath: '/page/3',
+    currentPath: '/page/3/',
     current: 3,
     total: 3 } ])
 
@@ -75,7 +75,7 @@ describe('pagination', () => {
     prev: '/',
     next: '',
     posts: [ 3 ],
-    currentPath: '/nav/2',
+    currentPath: '/nav/2/',
     current: 2,
     total: 2 } ])
 
