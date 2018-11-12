@@ -21,7 +21,7 @@ function getNext(base, current, prefix) {
   return join(base, prefix, (current + 1).toString(), '/')
 }
 
-function pagination(args, extra = {}) {
+module.exports = (args, extra = {}) => {
   const {
     base,
     perpage,
@@ -68,5 +68,3 @@ function pagination(args, extra = {}) {
 
   return data
 }
-
-module.exports = pagination

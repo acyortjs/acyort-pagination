@@ -1,8 +1,11 @@
 {
   "name": "@acyort/paginator",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Pagination utilities",
   "main": "index.js",
+  "files": [
+    "index.js"
+  ],
   "scripts": {
     "test": "npm run test:lint && npm run test:cover",
     "test:unit": "mocha --reporter dot --require intelli-espower-loader ./test",
